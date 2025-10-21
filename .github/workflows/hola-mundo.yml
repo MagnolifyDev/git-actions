@@ -5,6 +5,9 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x, 16.x, 18.x]
 
     steps:
       - name: Checkout code
@@ -12,7 +15,5 @@ jobs:
 
       - name: Set up Node.js
         uses: actions/setup-node@v2
-        with:
-          node-version: "18"
       - name: Run Hola Mundo script
         run: node index.js
