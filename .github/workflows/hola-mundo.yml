@@ -1,6 +1,9 @@
 name: Aprendiendo GitHub Actions
 run-name: Hola Mundo Workflow en JavaScript
 on: [push]
+concurrency: 
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build:
@@ -8,6 +11,7 @@ jobs:
     strategy:
       matrix:
         node-version: [14.x, 16.x, 18.x]
+
 
     steps:
       - name: Checkout code
